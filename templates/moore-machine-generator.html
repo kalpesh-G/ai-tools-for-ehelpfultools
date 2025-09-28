@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Moore Machine Table Generator | Free Online FSM Tool | eHelpFulTools</title>
+  <meta name="description" content="Generate Moore Machine transition tables instantly with our free online FSM tool. Supports JSON input, manual entry, dynamic table generation, and visualization for students & professionals." />
+  <meta name="keywords" content="moore machine, moore machine generator, finite state machine tool, FSM table generator, automata theory tool, moore state diagram, computer science automata, online FSM visualizer" />
+  <meta name="author" content="eHelpFulTools" />
+  <meta name="robots" content="index, follow" />
+
+
+  <!-- Open Graph for Social Media -->
+  <meta property="og:title" content="Free Moore Machine Table Generator | FSM Online Tool | eHelpFulTools" />
+  <meta property="og:description" content="Create Moore Machine transition tables & diagrams with ease. Enter JSON or manual data, generate FSM tables, and visualize automata online for free." />
+  <meta property="og:url" content="https://ehelpfultools.tech/moore-machine-tool.html" />
+  <meta property="og:image" content="https://ehelpfultools.tech/images/moore-machine-preview.png" />
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Free Moore Machine Table Generator | FSM Online Tool | eHelpFulTools" />
+  <meta name="twitter:description" content="Generate and visualize Moore Machine transition tables online. A free automata theory tool for students, teachers & developers." />
+  <meta name="twitter:image" content="https://ehelpfultools.tech/images/moore-machine-preview.png" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="https://ehelpfultools.tech/images/logo.png" type="image/png" />
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Moore Machine Table Generator",
+  "url": "https://ehelpfultools.tech/moore-machine-tool.html",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "All",
+  "description": "Free Moore Machine Table Generator for automata theory. Generate FSM transition tables, visualize state diagrams, and input data via JSON or manual entry.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "eHelpFulTools",
+    "url": "https://ehelpfultools.tech",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://ehelpfultools.tech/images/logo.png"
+    }
+  },
+  "featureList": [
+    "Automatic Moore Machine transition table generation",
+    "JSON input support for FSMs",
+    "Manual entry for states and transitions",
+    "Dynamic transition table creation",
+    "State diagram visualization",
+    "Educational tool for students and teachers"
+  ]
+}
+</script>
+
+    <style>
+        :root {
+            --primary: #4CAF50;
+            --primary-dark: #3d8b40;
+            --secondary: #2196F3;
+            --secondary-dark: #0b7dda;
+            --accent: #FFC107;
+            --accent-dark: #e6ac00;
+            --background: #F7F9FC;
+            --surface: #FFFFFF;
+            --text-primary: #333333;
+            --text-secondary: #666666;
+            --border: #E0E0E0;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.305);
+            --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.12);
+            --radius: 12px;
+            --transition: all 0.3s ease;
+            --footer-bd:rgb(23, 153, 196);
+        }
+
+        .dark-mode {
+            --background: #121212;
+            --surface: #1E1E1E;
+            --text-primary: #FFFFFF;
+            --text-secondary: #B0B0B0;
+            --border: #333333;
+            --shadow: 0 4px 12px rgba(193, 182, 182, 0.634);
+            --shadow-hover: 0 8px 24px rgba(162, 150, 150, 0.589);
+            --footer-bd:rgba(255, 255, 255, 0.593)
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: var(--transition);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 0 20px;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 30px 0 80px;
+        }
+
+        @media (max-width: 1024px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 24px;
+            transition: var(--transition);
+            height: fit-content;
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-hover);
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-title i {
+            color: var(--primary);
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        textarea, input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            background: var(--surface);
+            color: var(--text-primary);
+            transition: var(--transition);
+            resize: vertical;
+        }
+
+        textarea:focus, input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+        }
+
+        .json-editor {
+            font-family: 'Courier New', monospace;
+            min-height: 200px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+            background: var(--primary-dark);
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--secondary-dark);
+        }
+
+        .btn-accent {
+            background: var(--accent);
+            color: #333;
+        }
+
+        .btn-accent:hover {
+            background: var(--accent-dark);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+        }
+
+        .btn-outline:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .dark-mode .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            font-weight: 600;
+            background: rgba(0, 0, 0, 0.02);
+        }
+
+        .dark-mode th {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        tr:hover {
+            background: rgba(0, 0, 0, 0.02);
+        }
+
+        .dark-mode tr:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .diagram-container {
+            margin-top: 20px;
+            position: relative;
+            min-height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #stateDiagram {
+            width: 100%;
+            height: 400px;
+        }
+
+        .state {
+            fill: var(--surface);
+            stroke: var(--primary);
+            stroke-width: 2;
+            transition: var(--transition);
+        }
+
+        .state.active {
+            fill: var(--primary);
+            stroke: var(--primary-dark);
+            filter: drop-shadow(0 0 8px rgba(76, 175, 80, 0.6));
+        }
+
+        .state-label {
+            font-weight: 500;
+            text-anchor: middle;
+            dominant-baseline: central;
+        }
+
+        .state-output {
+            font-size: 12px;
+            fill: var(--text-secondary);
+            text-anchor: middle;
+        }
+
+        .transition {
+            stroke: var(--text-secondary);
+            stroke-width: 1.5;
+            marker-end: url(#arrowhead);
+        }
+
+        .transition-label {
+            font-size: 12px;
+            fill: var(--text-secondary);
+        }
+
+        .start-arrow {
+            stroke: var(--primary);
+            stroke-width: 2;
+            marker-end: url(#arrowhead);
+        }
+
+        .tester-section {
+            margin-top: 30px;
+        }
+
+        .tester-input {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .tester-input input {
+            flex: 1;
+        }
+
+        .trace-log {
+            background: rgba(0, 0, 0, 0.02);
+            border-radius: 8px;
+            padding: 16px;
+            max-height: 200px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+
+        .dark-mode .trace-log {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .trace-step {
+            margin-bottom: 8px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .trace-step:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .floating-buttons {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 100;
+        }
+
+        .floating-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: var(--transition);
+            background: var(--surface);
+            color: var(--text-primary);
+        }
+
+        .floating-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .floating-btn.primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .loading {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .spinner {
+            width: 24px;
+            height: 24px;
+            border: 3px solid rgba(76, 175, 80, 0.2);
+            border-radius: 50%;
+            border-top-color: var(--primary);
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .error-message {
+            background: rgba(244, 67, 54, 0.1);
+            color: #f44336;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin: 20px 0;
+            display: none;
+        }
+
+        .success-message {
+            background: rgba(76, 175, 80, 0.1);
+            color: var(--primary);
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin: 20px 0;
+            display: none;
+        }
+
+        .tooltip {
+            position: absolute;
+            background: var(--surface);
+            color: var(--text-primary);
+            padding: 8px 12px;
+            border-radius: 6px;
+            box-shadow: var(--shadow);
+            font-size: 14px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s;
+            z-index: 1000;
+            max-width: 300px;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide-up {
+            animation: slideUp 0.5s ease forwards;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                gap: 20px;
+            }
+            
+            .card {
+                padding: 16px;
+            }
+            
+            .floating-buttons {
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .btn-group {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+        }
+           .footer-bottom {
+            text-align: center;
+            padding-top: 10px;
+            margin-bottom: 10px;
+            margin-top: 0px;
+            border-top: 1px solid var(--footer-bd);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>AI Moore Machine Generator by </h1>
+            <p style="color: var(--text-primary);font-size:xx-large;">e<span style="color:rgb(255, 0, 0)">HelpFul</span>Tools.tech</p>
+            <p class="subtitle">Generate, visualize, and test Moore Machines with AI. Create state tables, diagrams, and simulations instantly.</p>
+        </header>
+
+        <div class="main-content">
+            <!-- Input Section -->
+            <div class="card fade-in">
+                <h2 class="card-title">
+                    <i>📝</i> Machine Definition
+                </h2>
+                
+                <div class="input-group">
+                    <label for="promptInput">Describe your Moore Machine in natural language:</label>
+                    <textarea id="promptInput" placeholder="E.g., Create a Moore machine that detects the sequence '101' and outputs 1 when detected, 0 otherwise." rows="4"></textarea>
+                </div>
+                
+                <div class="input-group">
+                    <label for="jsonInput">Or edit the JSON definition directly:</label>
+                    <textarea id="jsonInput" class="json-editor" placeholder='{
+  "alphabet": ["0", "1"],
+  "states": [
+    {"id": "S0", "output": 0, "start": true},
+    {"id": "S1", "output": 0, "start": false},
+    {"id": "S2", "output": 0, "start": false},
+    {"id": "S3", "output": 1, "start": false}
+  ],
+  "transitions": [
+    {"from": "S0", "input": "0", "to": "S0"},
+    {"from": "S0", "input": "1", "to": "S1"},
+    {"from": "S1", "input": "0", "to": "S2"},
+    {"from": "S1", "input": "1", "to": "S1"},
+    {"from": "S2", "input": "0", "to": "S0"},
+    {"from": "S2", "input": "1", "to": "S3"},
+    {"from": "S3", "input": "0", "to": "S2"},
+    {"from": "S3", "input": "1", "to": "S1"}
+  ]
+}' rows="12"></textarea>
+                </div>
+                
+                <div class="btn-group">
+                    <button id="generateBtn" class="btn">
+                        <i>🤖</i> Generate with AI
+                    </button>
+                    <button id="loadExampleBtn" class="btn btn-secondary">
+                        <i>📚</i> Load Example
+                    </button>
+                    <button id="validateBtn" class="btn btn-outline">
+                        <i>✅</i> Validate JSON
+                    </button>
+                </div>
+                
+                <div id="loadingIndicator" class="loading">
+                    <div class="spinner"></div>
+                    <span>Generating Moore Machine with AI...</span>
+                </div>
+                
+                <div id="errorMessage" class="error-message"></div>
+                <div id="successMessage" class="success-message"></div>
+            </div>
+
+            <!-- Output Section -->
+            <div class="card slide-up">
+                <h2 class="card-title">
+                    <i>📊</i> Machine Visualization
+                </h2>
+                
+                <div class="table-container">
+                    <table id="transitionTable">
+                        <thead>
+                            <tr>
+                                <th>State</th>
+                                <th>Output</th>
+                                <!-- Alphabet columns will be added dynamically -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Table rows will be populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="diagram-container">
+                    <svg id="stateDiagram" viewBox="0 0 600 400">
+                        <defs>
+                            <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                <polygon points="0 0, 10 3.5, 0 7" fill="#666" />
+                            </marker>
+                        </defs>
+                        <!-- SVG elements will be generated dynamically -->
+                    </svg>
+                    <div id="tooltip" class="tooltip"></div>
+                </div>
+                
+                <div class="tester-section">
+                    <h3 class="card-title">
+                        <i>🔍</i> Test Input String
+                    </h3>
+                    
+                    <div class="tester-input">
+                        <input id="testInput" type="text" placeholder="Enter input string (e.g., 10100101)">
+                        <button id="testBtn" class="btn btn-accent">
+                            <i>▶️</i> Test
+                        </button>
+                        <button id="resetTestBtn" class="btn btn-outline">
+                            <i>🔄</i> Reset
+                        </button>
+                    </div>
+                    
+                    <div class="trace-log" id="traceLog">
+                        <!-- Trace steps will be added here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Action Buttons -->
+    <div class="floating-buttons">
+        <div id="themeToggle" class="floating-btn" title="Toggle Dark/Light Mode">
+            <i>🌙</i>
+        </div>
+        <div id="downloadJsonBtn" class="floating-btn" title="Download JSON">
+            <i>📥</i>
+        </div>
+        <div id="downloadSvgBtn" class="floating-btn" title="Download SVG">
+            <i>🖼️</i>
+        </div>
+        <div id="downloadCsvBtn" class="floating-btn" title="Download CSV">
+            <i>📊</i>
+        </div>
+    </div>
+<div class="footer-bottom">
+                    <p>Made with ❤️ in India | © 2025 eHelpfulTools. All rights reserved.</p>
+                </div>
+<script>
+const mooreMachineSchema = {
+    alphabet: 'array',
+    states: 'array',
+    transitions: 'array'
+};
+
+let currentMachine = null;
+let currentState = null;
+let testHistory = [];
+
+// DOM Elements
+const promptInput = document.getElementById('promptInput');
+const jsonInput = document.getElementById('jsonInput');
+const generateBtn = document.getElementById('generateBtn');
+const loadExampleBtn = document.getElementById('loadExampleBtn');
+const validateBtn = document.getElementById('validateBtn');
+const loadingIndicator = document.getElementById('loadingIndicator');
+const errorMessage = document.getElementById('errorMessage');
+const successMessage = document.getElementById('successMessage');
+const transitionTable = document.getElementById('transitionTable');
+const stateDiagram = document.getElementById('stateDiagram');
+const tooltip = document.getElementById('tooltip');
+const testInput = document.getElementById('testInput');
+const testBtn = document.getElementById('testBtn');
+const resetTestBtn = document.getElementById('resetTestBtn');
+const traceLog = document.getElementById('traceLog');
+const themeToggle = document.getElementById('themeToggle');
+const downloadJsonBtn = document.getElementById('downloadJsonBtn');
+const downloadSvgBtn = document.getElementById('downloadSvgBtn');
+const downloadCsvBtn = document.getElementById('downloadCsvBtn');
+
+// Example machine
+const exampleMachine = {
+    alphabet: ["0", "1"],
+    states: [
+        { id: "S0", output: 0, start: true },
+        { id: "S1", output: 0, start: false },
+        { id: "S2", output: 0, start: false },
+        { id: "S3", output: 1, start: false }
+    ],
+    transitions: [
+        { from: "S0", input: "0", to: "S0" },
+        { from: "S0", input: "1", to: "S1" },
+        { from: "S1", input: "0", to: "S2" },
+        { from: "S1", input: "1", to: "S1" },
+        { from: "S2", input: "0", to: "S0" },
+        { from: "S2", input: "1", to: "S3" },
+        { from: "S3", input: "0", to: "S2" },
+        { from: "S3", input: "1", to: "S1" }
+    ]
+};
+function renderMachine() {
+    if (!currentMachine) return;
+    renderTransitionTable();
+    renderStateDiagram();
+    resetTest(); // reset any previous input test
+}
+
+function init() {
+    generateBtn.addEventListener('click', generateWithAI);
+    loadExampleBtn.addEventListener('click', loadExample);
+    validateBtn.addEventListener('click', validateAndRender);
+    testBtn.addEventListener('click', testInputString);
+    resetTestBtn.addEventListener('click', resetTest);
+    themeToggle.addEventListener('click', toggleTheme);
+    downloadJsonBtn.addEventListener('click', downloadJSON);
+    downloadSvgBtn.addEventListener('click', downloadSVG);
+    downloadCsvBtn.addEventListener('click', downloadCSV);
+
+    jsonInput.addEventListener('input', () => {
+        hideMessage(errorMessage);
+        hideMessage(successMessage);
+    });
+
+    loadExample();
+}
+
+// === AI Generator (simulated) ===
+async function generateWithAI() {
+    const prompt = promptInput.value.trim();
+    if (!prompt) {
+        showMessage(errorMessage, "Enter a description for the Moore Machine.");
+        return;
+    }
+
+    showLoading(true);
+    hideMessage(errorMessage);
+    hideMessage(successMessage);
+
+    try {
+        const response = await fetch('/generate-machine', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ prompt })
+        });
+        const data = await response.json();
+        if (!response.ok || !data.machine) {
+            throw new Error(data.error || 'Failed to generate Moore Machine.');
+        }
+        const machineData = data.machine;
+        if (validateMachine(machineData)) {
+            currentMachine = machineData;
+            jsonInput.value = JSON.stringify(machineData, null, 2);
+            renderMachine();
+            showMessage(successMessage, "Moore Machine generated successfully!");
+        } else {
+            throw new Error("Generated machine does not match the required schema.");
+        }
+    } catch (err) {
+        showMessage(errorMessage, `Failed to generate Moore Machine: ${err.message}`);
+    } finally {
+        showLoading(false);
+    }
+}
+
+// === Load example ===
+function loadExample() {
+    currentMachine = exampleMachine;
+    jsonInput.value = JSON.stringify(exampleMachine, null, 2);
+    promptInput.value = "Create a Moore machine that detects '101'.";
+    hideMessage(errorMessage);
+    hideMessage(successMessage);
+    renderMachine();
+}
+
+// === Validate JSON and render ===
+function validateAndRender() {
+    try {
+        const machineData = JSON.parse(jsonInput.value);
+        if (validateMachine(machineData)) {
+            currentMachine = machineData;
+            renderMachine();
+            showMessage(successMessage, "JSON valid! Machine rendered.");
+        } else {
+            showMessage(errorMessage, "JSON doesn't match Moore Machine schema.");
+        }
+    } catch (err) {
+        showMessage(errorMessage, `Invalid JSON: ${err.message}`);
+    }
+}
+
+// === Validation ===
+function validateMachine(machine) {
+    if (!machine.alphabet || !machine.states || !machine.transitions) return false;
+
+    for (const s of machine.states) {
+        if (!s.id || s.output === undefined || s.start === undefined) return false;
+    }
+    for (const t of machine.transitions) {
+        if (!t.from || !t.input || !t.to) return false;
+    }
+    if (machine.states.filter(s => s.start).length !== 1) return false;
+
+    return true;
+}
+
+// === Render transition table ===
+function renderTransitionTable() {
+    const thead = transitionTable.querySelector('thead');
+    const tbody = transitionTable.querySelector('tbody');
+    tbody.innerHTML = '';
+
+    // Update header
+    const headerRow = thead.querySelector('tr');
+    while (headerRow.children.length > 2) headerRow.removeChild(headerRow.lastChild);
+    currentMachine.alphabet.forEach(sym => {
+        const th = document.createElement('th');
+        th.textContent = `On ${sym}`;
+        headerRow.appendChild(th);
+    });
+
+    // Add rows
+    currentMachine.states.forEach(state => {
+        const row = document.createElement('tr');
+        row.dataset.stateId = state.id;
+
+        const stateCell = document.createElement('td');
+        stateCell.innerHTML = state.id + (state.start ? ' <span style="color: var(--primary)">(Start)</span>' : '');
+        row.appendChild(stateCell);
+
+        const outputCell = document.createElement('td');
+        outputCell.textContent = state.output;
+        row.appendChild(outputCell);
+
+        currentMachine.alphabet.forEach(sym => {
+            const cell = document.createElement('td');
+            const t = currentMachine.transitions.find(tr => tr.from === state.id && tr.input === sym);
+            cell.textContent = t ? t.to : '-';
+            if (!t) cell.style.color = 'var(--text-secondary)';
+            row.appendChild(cell);
+        });
+
+        tbody.appendChild(row);
+    });
+}
+
+// === Render state diagram ===
+// Keep track of placed labels to avoid overlaps
+const placedLabels = [];
+
+// === Render state diagram ===
+function renderStateDiagram() {
+    if (!currentMachine) return;
+    stateDiagram.innerHTML = `<defs>
+        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#666" />
+        </marker>
+    </defs>`;
+
+    const states = currentMachine.states;
+    const transitions = currentMachine.transitions;
+    const startState = states.find(s => s.start);
+    const cx = 300, cy = 200, r = 150;
+
+    // Calculate positions
+    const positions = {};
+    states.forEach((state, i) => {
+        const angle = (2 * Math.PI * i) / states.length;
+        positions[state.id] = { x: cx + r * Math.cos(angle), y: cy + r * Math.sin(angle) };
+    });
+
+    // Draw states
+    states.forEach(state => {
+        const { x, y } = positions[state.id];
+        const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        circle.setAttribute("class", "state");
+        circle.setAttribute("id", `state-${state.id}`);
+        circle.setAttribute("cx", x);
+        circle.setAttribute("cy", y);
+        circle.setAttribute("r", 40);
+        circle.setAttribute("data-state-id", state.id);
+        circle.addEventListener('mouseover', showStateTooltip);
+        circle.addEventListener('mouseout', hideTooltip);
+        stateDiagram.appendChild(circle);
+
+        const label = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        label.setAttribute("class", "state-label");
+        label.setAttribute("x", x);
+        label.setAttribute("y", y - 5);
+        label.textContent = state.id;
+        stateDiagram.appendChild(label);
+
+        const outputLabel = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        outputLabel.setAttribute("class", "state-output");
+        outputLabel.setAttribute("x", x);
+        outputLabel.setAttribute("y", y + 15);
+        outputLabel.textContent = `Output: ${state.output}`;
+        stateDiagram.appendChild(outputLabel);
+    });
+
+    // Draw transitions
+    transitions.forEach(t => {
+        const from = positions[t.from];
+        const to = positions[t.to];
+
+        if (!from || !to) return;
+
+        // Self-loop
+        if (t.from === t.to) {
+            const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            path.setAttribute("class", "transition");
+            path.setAttribute("d", `M ${from.x} ${from.y - 40} C ${from.x + 50} ${from.y - 80}, ${from.x + 100} ${from.y - 40}, ${from.x} ${from.y - 40}`);
+            path.setAttribute("fill", "none");
+            stateDiagram.appendChild(path);
+
+            let lx = from.x + 30, ly = from.y - 60;
+            ({ x: lx, y: ly } = avoidOverlap(lx, ly)); // 👈 adjust if overlapping
+
+            const label = document.createElementNS("http://www.w3.org/2000/svg", "text");
+            label.setAttribute("class", "transition-label");
+            label.setAttribute("x", lx);
+            label.setAttribute("y", ly);
+            label.textContent = t.input ? t.input : '-';
+            stateDiagram.appendChild(label);
+            return;
+        }
+
+        const dx = to.x - from.x, dy = to.y - from.y, len = Math.sqrt(dx*dx + dy*dy);
+        const nx = dx / len, ny = dy / len;
+        const startX = from.x + nx * 40, startY = from.y + ny * 40;
+        const endX = to.x - nx * 40, endY = to.y - ny * 40;
+
+        // Offset for bidirectional transitions
+        let offset = 0;
+        const isBidirectional = transitions.some(
+          other => other.from === t.to && other.to === t.from && t.from !== t.to
+        );
+        if (isBidirectional) {
+          offset = 12;
+        }
+        // Perpendicular vector
+        const perpX = -ny;
+        const perpY = nx;
+        const startXOffset = startX + perpX * offset;
+        const startYOffset = startY + perpY * offset;
+        const endXOffset = endX + perpX * offset;
+        const endYOffset = endY + perpY * offset;
+
+        // Draw straight line with offset
+        const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        line.setAttribute("class", "transition");
+        line.setAttribute("x1", startXOffset);
+        line.setAttribute("y1", startYOffset);
+        line.setAttribute("x2", endXOffset);
+        line.setAttribute("y2", endYOffset);
+        line.setAttribute("marker-end", "url(#arrowhead)");
+        stateDiagram.appendChild(line);
+
+        // Draw label offset from the arrow, keeping it inside the SVG area
+        const label = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        label.setAttribute("class", "transition-label");
+        // Position label 35% along the line from start to end, offset outward from the arrow
+        let labelX = startXOffset + (endXOffset - startXOffset) * 0.35 + perpX * (offset + 12);
+        let labelY = startYOffset + (endYOffset - startYOffset) * 0.35 + perpY * (offset + 12) - 15;
+        // Clamp label position to stay inside SVG area
+        labelX = Math.max(20, Math.min(labelX, 580));
+        labelY = Math.max(20, Math.min(labelY, 380));
+        label.setAttribute("x", labelX);
+        label.setAttribute("y", labelY);
+        label.textContent = t.input ? t.input : '-';
+        stateDiagram.appendChild(label);
+    });
+
+    // Start arrow
+    if (startState) {
+        const { x, y } = positions[startState.id];
+        const arrow = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        arrow.setAttribute("class", "start-arrow");
+        arrow.setAttribute("x1", x - 80);
+        arrow.setAttribute("y1", y - 80);
+        arrow.setAttribute("x2", x - 40);
+        arrow.setAttribute("y2", y - 40);
+        arrow.setAttribute("marker-end", "url(#arrowhead)");
+        stateDiagram.appendChild(arrow);
+    }
+}
+
+// === Helper: avoid overlapping labels ===
+function avoidOverlap(x, y) {
+    let adjusted = { x, y };
+    const padding = 15;
+    let collision = placedLabels.some(p => Math.abs(p.x - x) < padding && Math.abs(p.y - y) < padding);
+    let tries = 0;
+
+    while (collision && tries < 5) {
+        adjusted.y += padding; // shift downward
+        collision = placedLabels.some(p => Math.abs(p.x - adjusted.x) < padding && Math.abs(p.y - adjusted.y) < padding);
+        tries++;
+    }
+
+    placedLabels.push(adjusted);
+    return adjusted;
+}
+
+// === Tooltip ===
+function showStateTooltip(event) {
+    const stateId = event.target.getAttribute('data-state-id');
+    const state = currentMachine.states.find(s => s.id === stateId);
+    if (!state) return;
+
+    const transitions = currentMachine.transitions.filter(t => t.from === stateId);
+    let content = `<strong>${stateId}</strong><br>Output: ${state.output}` + (state.start ? "<br><em>Start</em>" : "");
+    if (transitions.length) content += "<br><br>Transitions:" + transitions.map(t => `<br>On '${t.input}' → ${t.to}`).join('');
+    tooltip.innerHTML = content;
+    tooltip.style.opacity = '1';
+    tooltip.style.left = (event.pageX + 10) + 'px';
+    tooltip.style.top = (event.pageY + 10) + 'px';
+}
+
+function hideTooltip() {
+    tooltip.style.opacity = '0';
+}
+
+// === Testing input string ===
+function testInputString() {
+    if (!currentMachine) { showMessage(errorMessage, "Load a machine first."); return; }
+    const inputString = testInput.value.trim();
+    if (!inputString) { showMessage(errorMessage, "Enter input string."); return; }
+
+    // Validate symbols
+    for (const char of inputString) {
+        if (!currentMachine.alphabet.includes(char)) {
+            showMessage(errorMessage, `Invalid symbol '${char}'.`);
+            return;
+        }
+    }
+
+    resetTest();
+    const startState = currentMachine.states.find(s => s.start);
+    currentState = startState;
+    testHistory = [{ state: currentState, input: null, output: currentState.output }];
+    updateActiveState();
+    updateTraceLog();
+
+    let idx = 0;
+    const step = () => {
+        if (idx >= inputString.length) { showMessage(successMessage, "Processing complete!"); return; }
+        const ch = inputString[idx];
+        const t = currentMachine.transitions.find(tr => tr.from === currentState.id && tr.input === ch);
+        if (!t) { showMessage(errorMessage, `No transition for '${currentState.id}' on '${ch}'`); return; }
+
+        currentState = currentMachine.states.find(s => s.id === t.to);
+        testHistory.push({ state: currentState, input: ch, output: currentState.output });
+        updateActiveState();
+        updateTraceLog();
+        idx++;
+        setTimeout(step, 1000);
+    };
+    step();
+}
+
+function resetTest() {
+    currentState = null;
+    testHistory = [];
+    stateDiagram.querySelectorAll('.state.active').forEach(s => s.classList.remove('active'));
+    traceLog.innerHTML = '<div class="trace-step">Enter input and click "Test" to trace...</div>';
+    hideMessage(errorMessage);
+    hideMessage(successMessage);
+}
+
+function updateActiveState() {
+    stateDiagram.querySelectorAll('.state').forEach(s => s.classList.remove('active'));
+    if (currentState) document.getElementById(`state-${currentState.id}`)?.classList.add('active');
+}
+
+function updateTraceLog() {
+    traceLog.innerHTML = '';
+    testHistory.forEach((h, i) => {
+        const div = document.createElement('div');
+        div.className = 'trace-step';
+        div.innerHTML = i === 0 ? `<strong>Start:</strong> State ${h.state.id}, Output: ${h.output}`
+                                : `<strong>Step ${i}:</strong> Input '${h.input}' → State ${h.state.id}, Output: ${h.output}`;
+        traceLog.appendChild(div);
+    });
+    traceLog.scrollTop = traceLog.scrollHeight;
+}
+
+function toggleTheme() {
+    document.body.classList.toggle('dark-mode');
+    themeToggle.innerHTML = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+}
+
+// === Downloads ===
+function downloadJSON() {
+    if (!currentMachine) { showMessage(errorMessage, "No machine to download."); return; }
+    const blob = new Blob([JSON.stringify(currentMachine, null, 2)], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'moore-machine.json';
+    a.click();
+}
+
+function downloadSVG() {
+    if (!currentMachine) { showMessage(errorMessage, "No diagram to download."); return; }
+    // Clone SVG and inline styles
+    const svgClone = stateDiagram.cloneNode(true);
+    // Add style block for SVG
+    const style = document.createElementNS("http://www.w3.org/2000/svg", "style");
+    style.textContent = `
+        .state { fill: #fff; stroke: #4CAF50; stroke-width: 2; }
+        .state-label { font-weight: 600; font-size: 1.1rem; fill: #333; text-anchor: middle; dominant-baseline: central; }
+        .state-output { font-size: 0.95rem; fill: #2196F3; text-anchor: middle; }
+        .transition { stroke: #666; stroke-width: 2; }
+        .transition-label { font-size: 1rem; fill: #333; text-anchor: middle; }
+        .start-arrow { stroke: #4CAF50; stroke-width: 2; }
+    `;
+    svgClone.insertBefore(style, svgClone.firstChild);
+    // Serialize and download
+    const serializer = new XMLSerializer();
+    const svgString = serializer.serializeToString(svgClone);
+    const blob = new Blob([svgString], { type: 'image/svg+xml' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'moore-machine-diagram.svg';
+    a.click();
+}
+
+function downloadCSV() {
+    if (!currentMachine) { showMessage(errorMessage, "No machine to download."); return; }
+    let csv = "State,Output," + currentMachine.alphabet.map(a => `On ${a}`).join(",") + "\n";
+    currentMachine.states.forEach(s => {
+        csv += s.id + "," + s.output + "," + currentMachine.alphabet.map(a => {
+            const t = currentMachine.transitions.find(tr => tr.from === s.id && tr.input === a);
+            return t ? t.to : '-';
+        }).join(",") + "\n";
+    });
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'moore-machine.csv';
+    a.click();
+}
+
+function showLoading(show) {
+    loadingIndicator.style.display = show ? 'flex' : 'none';
+    generateBtn.disabled = show;
+}
+
+function showMessage(el, msg) { el.textContent = msg; el.style.display = 'block'; }
+function hideMessage(el) { el.style.display = 'none'; }
+
+document.addEventListener('DOMContentLoaded', init);
+</script>
+
+</body>
+</html>
