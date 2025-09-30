@@ -329,6 +329,7 @@
         }
 
         .state-label {
+            stroke: var(--primary-dark);
             font-weight: 500;
             text-anchor: middle;
             dominant-baseline: central;
@@ -1148,7 +1149,7 @@ function downloadSVG() {
     const style = document.createElementNS("http://www.w3.org/2000/svg", "style");
     style.textContent = `
         .state { fill: #fff; stroke: #4CAF50; stroke-width: 2; }
-        .state-label { font-weight: 600; font-size: 1.1rem; fill: #333; text-anchor: middle; dominant-baseline: central; }
+        .state-label { font-weight: 600; font-size: 1.1rem; fill: #333; text-anchor: middle; dominant-baseline: central;}
         .state-output { font-size: 0.95rem; fill: #2196F3; text-anchor: middle; }
         .transition { stroke: #666; stroke-width: 2; }
         .transition-label { font-size: 1rem; fill: #333; text-anchor: middle; }

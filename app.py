@@ -160,5 +160,5 @@ def generate_machine():
         print(f"Gemini API exception: {str(e)}")
         return jsonify({'error': 'Failed to contact Gemini API.', 'details': str(e)}), 502
 
-# if __name__ == '__main__':
-#     app.run(debug=True)
+if __name__ == '__main__':
+    app.run(debug=True)
