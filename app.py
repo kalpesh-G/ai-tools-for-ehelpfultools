@@ -158,7 +158,8 @@ def generate_machine():
         if hasattr(e, 'response') and e.response is not None:
             print(f"Gemini API error response: {e.response.text}")
         print(f"Gemini API exception: {str(e)}")
-        return jsonify({'error': 'Failed to contact Gemini API.', 'details': str(e)}), 502
+        return jsonify({'error': 'Failed to contact the ehelpfultools server.', 'details': str(e)}), 502
+        # return jsonify({'error': 'Failed to contact Gemini API.', 'details': str(e)}), 502
 
 if __name__ == '__main__':
     app.run(debug=True)
